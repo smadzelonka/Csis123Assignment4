@@ -1,3 +1,10 @@
+//
+//  main.cpp
+//  Assignment 4
+//  ID 0266099
+//  Created by Sean Madzelonka on 4/7/23.
+//
+
 #include <iostream>
 #include "Byte.hpp"
 
@@ -37,7 +44,8 @@ int main() {
                 exitProgram();
                 break;
             default:
-                std::cout << "Invalid choice. Please try again.\n";
+                std::cout << "Press any key to continue..." << std::endl;
+                std::cin.get();
         }
     } while (choice != 5);
 
