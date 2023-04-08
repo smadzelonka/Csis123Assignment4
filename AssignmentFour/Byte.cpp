@@ -7,9 +7,20 @@
 
 #include "Byte.hpp"
 
-Byte::Byte() : Byte(0) {}
+Byte::Byte() : bits(8) {
+    // Set all bits to 0 initially
+    for (int i = 0; i < 8; i++) {
+        bits[i] = false;
+    }
+}
 
 Byte::Byte(int val) : bits(8) {
+    // Set all bits to 0 initially
+    for (int i = 0; i < 8; i++) {
+        bits[i] = false;
+    }
+
+    // Convert the value to binary and store it in bits
     int i = 7;
     while (val > 0 && i >= 0) {
         bits[i] = val % 2;
@@ -18,29 +29,37 @@ Byte::Byte(int val) : bits(8) {
     }
 }
 
-Byte::Byte(const std::vector<int>& ar) : bits(8) {
-    for (int i = 0; i < 8 && i < ar.size(); i++) {
-        bits[i] = ar[i] == 1;
+Byte::Byte(int ar[]) : bits(8) {
+    // Set all bits to 0 initially
+    for (int i = 0; i < 8; i++) {
+        bits[i] = false;
+    }
+
+    // Set the bits according to the values in the array
+    for (int i = 0; i < 8 && ar[i] >= 0 && ar[i] <= 1; i++) {
+        bits[i] = ar[i];
     }
 }
 
-Byte Byte::add(const Byte& other) {
-    int result = this->toInt() + other.toInt();
+Byte::Byte(const Byte& other) : bits(other.bits) {}
+
+Byte Byte::add(const Byte& other) const {
+    int result = toInt() + other.toInt();
     return Byte(result);
 }
 
-Byte Byte::sub(const Byte& other) {
-    int result = this->toInt() - other.toInt();
+Byte Byte::sub(const Byte& other) const {
+    int result = toInt() - other.toInt();
     return Byte(result);
 }
 
-Byte Byte::mul(const Byte& other) {
-    int result = this->toInt() * other.toInt();
+Byte Byte::mul(const Byte& other) const {
+    int result = toInt() * other.toInt();
     return Byte(result);
 }
 
-Byte Byte::div(const Byte& other) {
-    int result = this->toInt() / other.toInt();
+Byte Byte::div(const Byte& other) const {
+    int result = toInt() / other.toInt();
     return Byte(result);
 }
 

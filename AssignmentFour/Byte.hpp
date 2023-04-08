@@ -8,9 +8,8 @@
 #ifndef Byte_hpp
 #define Byte_hpp
 
-#include <iostream>
-#include <string>
 #include <vector>
+#include <string>
 
 class Byte {
 private:
@@ -19,11 +18,15 @@ private:
 public:
     Byte();
     Byte(int val);
-    Byte(const std::vector<int>& ar);
-    Byte add(const Byte& other);
-    Byte sub(const Byte& other);
-    Byte mul(const Byte& other);
-    Byte div(const Byte& other);
+    Byte(int ar[]);
+    Byte(const Byte& other);
+    Byte& operator=(const Byte& other);
+    Byte(Byte&& other) noexcept;
+    Byte& operator=(Byte&& other) noexcept;
+    Byte add(const Byte& other) const;
+    Byte sub(const Byte& other) const;
+    Byte mul(const Byte& other) const;
+    Byte div(const Byte& other) const;
     int toInt() const;
     std::string toString() const;
 };

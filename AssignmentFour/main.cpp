@@ -1,110 +1,110 @@
+////
+////  main.cpp
+////  Assignment 4
+////  ID 0266099
+////  Created by Sean Madzelonka on 4/7/23.
+////
 //
-//  main.cpp
-//  Assignment 4
-//  ID 0266099
-//  Created by Sean Madzelonka on 4/7/23.
-//
-
 #include <iostream>
+#include <cstdlib>
+#include "Menu.hpp"
 #include "Byte.hpp"
 
-void  Addition();
-void  Subtraction();
-void  Multiplication();
-void  Division();
-void exitProgram();
+using namespace std;
+
+void addByte();
+void subByte();
+void mulByte();
+void divByte();
+void waitKey();
+void Exit();
+
+Menu m;
 
 int main() {
-    int choice;
-
-    do {
-        std::cout << "Byte Calculator\n";
-        std::cout << "1.   Addition\n";
-        std::cout << "2.   Subtraction\n";
-        std::cout << "3.   Multiplication\n";
-        std::cout << "4.   Division\n";
-        std::cout << "5. Exit\n";
-        std::cout << "Enter your choice: ";
-        std::cin >> choice;
-
-        switch (choice) {
-            case 1:
-                 Addition();
-                break;
-            case 2:
-                 Subtraction();
-                break;
-            case 3:
-                 Multiplication();
-                break;
-            case 4:
-                 Division();
-                break;
-            case 5:
-                exitProgram();
-                break;
-            default:
-                std::cout << "Press any key to continue..." << std::endl;
-                std::cin.get();
-        }
-    } while (choice != 5);
-
-    return 0;
+    m.addMenu("1. Add Bytes", addByte);
+    m.addMenu("2. Subtract Bytes", subByte);
+    m.addMenu("3. Multiply Bytes", mulByte);
+    m.addMenu("4. Divide Bytes", divByte);
+    m.addMenu("5. Exit", Exit);
+    m.runMenu();
 }
 
-void  Addition() {
-    int a, b;
-    std::cout << "Enter two integers for addition: ";
-    std::cin >> a >> b;
+void addByte() {
+    int val1, val2;
+    cout << "Enter the first byte value (0-255): ";
+    cin >> val1;
+    Byte b1(val1);
 
-    Byte byteA(a);
-    Byte byteB(b);
-    Byte result = byteA.add(byteB);
+    cout << "Enter the second byte value (0-255): ";
+    cin >> val2;
+    Byte b2(val2);
 
-    std::cout << "Result: " << result.toInt() << " (" << result.toString() << ")\n";
+    Byte b3 = b1.add(b2);
+    cout << "Int:    " << b3.toInt() << endl;
+    cout << "String: " << b3.toString() << endl;
+
+    waitKey();
 }
 
-void  Subtraction() {
-    int a, b;
-    std::cout << "Enter two integers for subtraction: ";
-    std::cin >> a >> b;
+void subByte() {
+    int val1, val2;
+    cout << "Enter the first byte value (0-255): ";
+    cin >> val1;
+    Byte b1(val1);
 
-    Byte byteA(a);
-    Byte byteB(b);
-    Byte result = byteA.sub(byteB);
+    cout << "Enter the second byte value (0-255): ";
+    cin >> val2;
+    Byte b2(val2);
 
-    std::cout << "Result: " << result.toInt() << " (" << result.toString() << ")\n";
+    Byte b3 = b1.sub(b2);
+    cout << "Int:    " << b3.toInt() << endl;
+    cout << "String: " << b3.toString() << endl;
+
+    waitKey();
 }
 
-void  Multiplication() {
-    int a, b;
-    std::cout << "Enter two integers for multiplication: ";
-    std::cin >> a >> b;
+void mulByte() {
+    int val1, val2;
+    cout << "Enter the first byte value (0-255): ";
+    cin >> val1;
+    Byte b1(val1);
 
-    Byte byteA(a);
-    Byte byteB(b);
-    Byte result = byteA.mul(byteB);
+    cout << "Enter the second byte value (0-255): ";
+    cin >> val2;
+    Byte b2(val2);
 
-    std::cout << "Result: " << result.toInt() << " (" << result.toString() << ")\n";
+    Byte b3 = b1.mul(b2);
+    cout << "Int:    " << b3.toInt() << endl;
+    cout << "String: " << b3.toString() << endl;
+
+    waitKey();
 }
 
-void  Division() {
-    int a, b;
-    std::cout << "Enter two integers for division: ";
-    std::cin >> a >> b;
+void divByte() {
+    int val1, val2;
+    cout << "Enter the first byte value (0-255): ";
+    cin >> val1;
+    Byte b1(val1);
 
-    if (b == 0) {
-        std::cout << "Error: Division by zero is not allowed.\n";
-        return;
-    }
+    cout << "Enter the second byte value (0-255): ";
+    cin >> val2;
+    Byte b2(val2);
 
-    Byte byteA(a);
-    Byte byteB(b);
-    Byte result = byteA.div(byteB);
+    Byte b3 = b1.div(b2);
+    cout << "Int:    " << b3.toInt() << endl;
+    cout << "String: " << b3.toString() << endl;
 
-    std::cout << "Result: " << result.toInt() << " (" << result.toString() << ")\n";
+    waitKey();
 }
 
-void exitProgram() {
-    std::cout << "Exiting the program...\n";
+void waitKey() {
+    cout << "Press any key to continue...";
+    cin.ignore();
+    cin.get();
+}
+
+void Exit() {
+    cout << "Goodbye!" << endl;
+    exit(0);
 }
