@@ -1,95 +1,110 @@
+////
+////  main.cpp
+////  Assignment 4
+////  ID 0266099
+////  Created by Sean Madzelonka on 4/7/23.
+////
 //
-//  main.cpp
-//  Assignment 4
-//  ID 0266099
-//  Created by Sean Madzelonka on 4/7/23.
-//
-
-// main.cpp
 #include <iostream>
-#include "byte.hpp"
-#include "menu.hpp"
+#include <cstdlib>
+#include "Menu.hpp"
+#include "Byte.hpp"
 
-void addOperation();
-void subOperation();
-void mulOperation();
-void divOperation();
-void exitProgram();
+using namespace std;
 
-Menu m; // create the Menu object in the global scope of main.cpp
+void addByte();
+void subByte();
+void mulByte();
+void divByte();
+void waitKey();
+void Exit();
+
+Menu m;
 
 int main() {
-    m.addMenu("1. Add operation", addOperation);
-    m.addMenu("2. Sub operation", subOperation);
-    m.addMenu("3. Mul operation", mulOperation);
-    m.addMenu("4. Div operation", divOperation);
-    m.addMenu("5. Exit", exitProgram);
+    m.addMenu("1. Add Bytes", addByte);
+    m.addMenu("2. Subtract Bytes", subByte);
+    m.addMenu("3. Multiply Bytes", mulByte);
+    m.addMenu("4. Divide Bytes", divByte);
+    m.addMenu("5. Exit", Exit);
     m.runMenu();
-
-    return 0;
 }
 
-void addOperation() {
-    int num1, num2;
-    std::cout << "Enter two numbers: ";
-    std::cin >> num1 >> num2;
+void addByte() {
+    int val1, val2;
+    cout << "Enter the first byte value (0-255): ";
+    cin >> val1;
+    Byte b1(val1);
 
-    Byte bite1(num1);
-    Byte bite2(num2);
-    Byte result = bite1.add(bite2.toInt());
+    cout << "Enter the second byte value (0-255): ";
+    cin >> val2;
+    Byte b2(val2);
 
-    std::cout << "Int:    " << result.toInt() << std::endl;
-    std::cout << "String: " << result.toString() << std::endl;
+    Byte b3 = b1.add(b2);
+    cout << "Int:    " << b3.toInt() << endl;
+    cout << "String: " << b3.toString() << endl;
 
-    m.waitKey(); // call waitKey function
+    waitKey();
 }
 
-void subOperation() {
-    int num1, num2;
-    std::cout << "Enter two numbers: ";
-    std::cin >> num1 >> num2;
+void subByte() {
+    int val1, val2;
+    cout << "Enter the first byte value (0-255): ";
+    cin >> val1;
+    Byte b1(val1);
 
-    Byte bite1(num1);
-    Byte bite2(num2);
-    Byte result = bite1.sub(bite2.toInt());
+    cout << "Enter the second byte value (0-255): ";
+    cin >> val2;
+    Byte b2(val2);
 
-    std::cout << "Int:    " << result.toInt() << std::endl;
-    std::cout << "String: " << result.toString() << std::endl;
+    Byte b3 = b1.sub(b2);
+    cout << "Int:    " << b3.toInt() << endl;
+    cout << "String: " << b3.toString() << endl;
 
-    m.waitKey(); // call waitKey function
+    waitKey();
 }
 
-void mulOperation() {
-    int num1, num2;
-    std::cout << "Enter two numbers: ";
-    std::cin >> num1 >> num2;
+void mulByte() {
+    int val1, val2;
+    cout << "Enter the first byte value (0-255): ";
+    cin >> val1;
+    Byte b1(val1);
 
-    Byte bite1(num1);
-    Byte bite2(num2);
-    Byte result = bite1.mul(bite2.toInt());
+    cout << "Enter the second byte value (0-255): ";
+    cin >> val2;
+    Byte b2(val2);
 
-    std::cout << "Int:    " << result.toInt() << std::endl;
-    std::cout << "String: " << result.toString() << std::endl;
+    Byte b3 = b1.mul(b2);
+    cout << "Int:    " << b3.toInt() << endl;
+    cout << "String: " << b3.toString() << endl;
 
-    m.waitKey(); // call waitKey function
+    waitKey();
 }
 
-void divOperation() {
-    int num1, num2;
-    std::cout << "Enter two numbers: ";
-    std::cin >> num1 >> num2;
+void divByte() {
+    int val1, val2;
+    cout << "Enter the first byte value (0-255): ";
+    cin >> val1;
+    Byte b1(val1);
 
-    Byte bite1(num1);
-    Byte bite2(num2);
-    Byte result = bite1.div(bite2.toInt());
+    cout << "Enter the second byte value (0-255): ";
+    cin >> val2;
+    Byte b2(val2);
 
-    std::cout << "Int:    " << result.toInt() << std::endl;
-    std::cout << "String: " << result.toString() << std::endl;
+    Byte b3 = b1.div(b2);
+    cout << "Int:    " << b3.toInt() << endl;
+    cout << "String: " << b3.toString() << endl;
 
-    m.waitKey(); // call waitKey function
+    waitKey();
 }
 
-void exitProgram() {
-    std::cout << "Goodbye!" << std::endl;
+void waitKey() {
+    cout << "Press any key to continue...";
+    cin.ignore();
+    cin.get();
+}
+
+void Exit() {
+    cout << "Goodbye!" << endl;
     exit(0);
 }
