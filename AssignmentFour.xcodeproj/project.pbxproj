@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		A73F478B29E111B200072983 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A73F478A29E111B200072983 /* main.cpp */; };
 		A73F479329E1120500072983 /* Byte.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A73F479129E1120500072983 /* Byte.cpp */; };
+		A73F479629E1192900072983 /* Menu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A73F479429E1192900072983 /* Menu.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -28,6 +29,8 @@
 		A73F478A29E111B200072983 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		A73F479129E1120500072983 /* Byte.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Byte.cpp; sourceTree = "<group>"; };
 		A73F479229E1120500072983 /* Byte.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Byte.hpp; sourceTree = "<group>"; };
+		A73F479429E1192900072983 /* Menu.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Menu.cpp; sourceTree = "<group>"; };
+		A73F479529E1192900072983 /* Menu.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Menu.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +63,8 @@
 		A73F478929E111B200072983 /* AssignmentFour */ = {
 			isa = PBXGroup;
 			children = (
+				A73F479529E1192900072983 /* Menu.hpp */,
+				A73F479429E1192900072983 /* Menu.cpp */,
 				A73F478A29E111B200072983 /* main.cpp */,
 				A73F479129E1120500072983 /* Byte.cpp */,
 				A73F479229E1120500072983 /* Byte.hpp */,
@@ -124,6 +129,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A73F479629E1192900072983 /* Menu.cpp in Sources */,
 				A73F478B29E111B200072983 /* main.cpp in Sources */,
 				A73F479329E1120500072983 /* Byte.cpp in Sources */,
 			);

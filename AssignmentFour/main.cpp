@@ -5,106 +5,91 @@
 //  Created by Sean Madzelonka on 4/7/23.
 //
 
+// main.cpp
 #include <iostream>
-#include "Byte.hpp"
+#include "byte.hpp"
+#include "menu.hpp"
 
-void  Addition();
-void  Subtraction();
-void  Multiplication();
-void  Division();
+void addOperation();
+void subOperation();
+void mulOperation();
+void divOperation();
 void exitProgram();
 
+Menu m; // create the Menu object in the global scope of main.cpp
+
 int main() {
-    int choice;
-
-    do {
-        std::cout << "Byte Calculator\n";
-        std::cout << "1.   Addition\n";
-        std::cout << "2.   Subtraction\n";
-        std::cout << "3.   Multiplication\n";
-        std::cout << "4.   Division\n";
-        std::cout << "5. Exit\n";
-        std::cout << "Enter your choice: ";
-        std::cin >> choice;
-
-        switch (choice) {
-            case 1:
-                 Addition();
-                break;
-            case 2:
-                 Subtraction();
-                break;
-            case 3:
-                 Multiplication();
-                break;
-            case 4:
-                 Division();
-                break;
-            case 5:
-                exitProgram();
-                break;
-            default:
-                std::cout << "Press any key to continue..." << std::endl;
-                std::cin.get();
-        }
-    } while (choice != 5);
+    m.addMenu("1. Add operation", addOperation);
+    m.addMenu("2. Sub operation", subOperation);
+    m.addMenu("3. Mul operation", mulOperation);
+    m.addMenu("4. Div operation", divOperation);
+    m.addMenu("5. Exit", exitProgram);
+    m.runMenu();
 
     return 0;
 }
 
-void  Addition() {
-    int a, b;
-    std::cout << "Enter two integers for addition: ";
-    std::cin >> a >> b;
+void addOperation() {
+    int num1, num2;
+    std::cout << "Enter two numbers: ";
+    std::cin >> num1 >> num2;
 
-    Byte byteA(a);
-    Byte byteB(b);
-    Byte result = byteA.add(byteB);
+    Byte bite1(num1);
+    Byte bite2(num2);
+    Byte result = bite1.add(bite2.toInt());
 
-    std::cout << "Result: " << result.toInt() << " (" << result.toString() << ")\n";
+    std::cout << "Int:    " << result.toInt() << std::endl;
+    std::cout << "String: " << result.toString() << std::endl;
+
+    m.waitKey(); // call waitKey function
 }
 
-void  Subtraction() {
-    int a, b;
-    std::cout << "Enter two integers for subtraction: ";
-    std::cin >> a >> b;
+void subOperation() {
+    int num1, num2;
+    std::cout << "Enter two numbers: ";
+    std::cin >> num1 >> num2;
 
-    Byte byteA(a);
-    Byte byteB(b);
-    Byte result = byteA.sub(byteB);
+    Byte bite1(num1);
+    Byte bite2(num2);
+    Byte result = bite1.sub(bite2.toInt());
 
-    std::cout << "Result: " << result.toInt() << " (" << result.toString() << ")\n";
+    std::cout << "Int:    " << result.toInt() << std::endl;
+    std::cout << "String: " << result.toString() << std::endl;
+
+    m.waitKey(); // call waitKey function
 }
 
-void  Multiplication() {
-    int a, b;
-    std::cout << "Enter two integers for multiplication: ";
-    std::cin >> a >> b;
+void mulOperation() {
+    int num1, num2;
+    std::cout << "Enter two numbers: ";
+    std::cin >> num1 >> num2;
 
-    Byte byteA(a);
-    Byte byteB(b);
-    Byte result = byteA.mul(byteB);
+    Byte bite1(num1);
+    Byte bite2(num2);
+    Byte result = bite1.mul(bite2.toInt());
 
-    std::cout << "Result: " << result.toInt() << " (" << result.toString() << ")\n";
+    std::cout << "Int:    " << result.toInt() << std::endl;
+    std::cout << "String: " << result.toString() << std::endl;
+
+    m.waitKey(); // call waitKey function
 }
 
-void  Division() {
-    int a, b;
-    std::cout << "Enter two integers for division: ";
-    std::cin >> a >> b;
+void divOperation() {
+    int num1, num2;
+    std::cout << "Enter two numbers: ";
+    std::cin >> num1 >> num2;
 
-    if (b == 0) {
-        std::cout << "Error: Division by zero is not allowed.\n";
-        return;
-    }
+    Byte bite1(num1);
+    Byte bite2(num2);
+    Byte result = bite1.div(bite2.toInt());
 
-    Byte byteA(a);
-    Byte byteB(b);
-    Byte result = byteA.div(byteB);
+    std::cout << "Int:    " << result.toInt() << std::endl;
+    std::cout << "String: " << result.toString() << std::endl;
 
-    std::cout << "Result: " << result.toInt() << " (" << result.toString() << ")\n";
+    m.waitKey(); // call waitKey function
 }
 
 void exitProgram() {
-    std::cout << "Exiting the program...\n";
+    std::cout << "Goodbye!" << std::endl;
+    exit(0);
 }

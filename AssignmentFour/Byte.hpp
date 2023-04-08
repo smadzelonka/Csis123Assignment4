@@ -20,12 +20,14 @@ public:
     Byte();
     Byte(int val);
     Byte(const std::vector<int>& ar);
-    Byte add(const Byte& other);
-    Byte sub(const Byte& other);
-    Byte mul(const Byte& other);
-    Byte div(const Byte& other);
-    int toInt() const;
-    std::string toString() const;
+    Byte add(int val);
+    Byte sub(int val);
+    Byte mul(int val);
+    Byte div(int val);
+    int toInt();
+    std::string toString();
 };
+
+
 
 #endif /* Byte_hpp */
