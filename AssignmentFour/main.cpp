@@ -43,6 +43,9 @@ void addByte() {
     Byte b3 = b1.add(b2);
     cout << "Int:    " << b3.toInt() << endl;
     cout << "String: " << b3.toString() << endl;
+    
+    // Access individual bits
+        cout << "Bit at Index 1: " << b3[1] << std::endl;
 
     waitKey();
 }
@@ -60,6 +63,8 @@ void subByte() {
     Byte b3 = b1.sub(b2);
     cout << "Int:    " << b3.toInt() << endl;
     cout << "String: " << b3.toString() << endl;
+    
+    cout << "Bit at Index 1: " << b3[1] << std::endl;
 
     waitKey();
 }
@@ -78,6 +83,8 @@ void mulByte() {
     cout << "Int:    " << b3.toInt() << endl;
     cout << "String: " << b3.toString() << endl;
 
+    
+    cout << "Bit at Index 1: " << b3[1] << std::endl;
     waitKey();
 }
 
@@ -94,6 +101,8 @@ void divByte() {
     Byte b3 = b1.div(b2);
     cout << "Int:    " << b3.toInt() << endl;
     cout << "String: " << b3.toString() << endl;
+    
+    cout << "Bit at Index 1: " << b3[1] << std::endl;
 
     waitKey();
 }

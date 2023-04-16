@@ -14,7 +14,7 @@
 class Byte {
 private:
     std::vector<bool> bits;
-
+    
 public:
     Byte();
     Byte(int val);
@@ -29,6 +29,19 @@ public:
     Byte div(const Byte& other) const;
     int toInt() const;
     std::string toString() const;
+    //    Assignment 5
+    bool operator==(const Byte& other) const;  // overloaded ==
+    bool operator!=(const Byte& other) const;  // overloaded !=
+    Byte operator+(const Byte& other) const;   // overloaded +
+    Byte operator-(const Byte& other) const;   // overloaded -
+    Byte operator*(const Byte& other) const;   // overloaded *
+    Byte operator/(const Byte& other) const;   // overloaded /
+    //    bool operator[](int index) const;         // overloaded []
+    //    bool& operator[](int index);              // overloaded []
+    std::vector<bool>::const_reference operator[](int index) const;
+    std::vector<bool>::reference operator[](int index);
+
+
 };
 
 #endif /* Byte_hpp */

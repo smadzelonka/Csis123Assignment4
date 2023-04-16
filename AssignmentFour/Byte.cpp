@@ -82,3 +82,45 @@ std::string Byte::toString() const {
     }
     return result;
 }
+
+Byte Byte::operator+(const Byte& other) const {
+    return add(other);
+}
+
+Byte Byte::operator-(const Byte& other) const {
+    return sub(other);
+}
+
+Byte Byte::operator*(const Byte& other) const {
+    return mul(other);
+}
+
+Byte Byte::operator/(const Byte& other) const {
+    return div(other);
+}
+
+bool Byte::operator==(const Byte& other) const {
+    return bits == other.bits;
+}
+
+bool Byte::operator!=(const Byte& other) const {
+    return !(*this == other);
+}
+
+//bool Byte::operator[](int index) const {
+//    return bits[index];
+//}
+
+//bool& Byte::operator[](int index) {
+//    return bits[index];
+//}
+
+
+
+std::vector<bool>::reference Byte::operator[](int index) {
+    return bits[index];
+}
+
+std::vector<bool>::const_reference Byte::operator[](int index) const {
+    return bits[index];
+}
