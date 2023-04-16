@@ -40,6 +40,7 @@ public:
     //    bool& operator[](int index);              // overloaded []
     std::vector<bool>::const_reference operator[](int index) const;
     std::vector<bool>::reference operator[](int index);
+    
 
 
 };

@@ -1,8 +1,8 @@
 ////
 ////  main.cpp
-////  Assignment 4
+////  Assignment 5
 ////  ID 0266099
-////  Created by Sean Madzelonka on 4/7/23.
+////  Created by Sean Madzelonka on 4/15/23.
 ////
 //
 #include <iostream>
@@ -16,6 +16,7 @@ void addByte();
 void subByte();
 void mulByte();
 void divByte();
+void bitByte();
 void waitKey();
 void Exit();
 
@@ -26,7 +27,8 @@ int main() {
     m.addMenu("2. Subtract Bytes", subByte);
     m.addMenu("3. Multiply Bytes", mulByte);
     m.addMenu("4. Divide Bytes", divByte);
-    m.addMenu("5. Exit", Exit);
+    m.addMenu("5. Test Bit Value", bitByte);
+    m.addMenu("6. Exit", Exit);
     m.runMenu();
 }
 
@@ -104,6 +106,19 @@ void divByte() {
     
     cout << "Bit at Index 1: " << b3[1] << std::endl;
 
+    waitKey();
+}
+
+void bitByte() {
+    int val, bit;
+    cout << "Enter the byte value (0-255): ";
+    cin >> val;
+    Byte b(val);
+
+    cout << "Enter the bit index (0-7): ";
+    cin >> bit;
+
+    cout << "Bit value: " << b[bit] << endl;
     waitKey();
 }
 
