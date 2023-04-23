@@ -1,126 +1,107 @@
-//
-//  Byte.cpp
-//  AssignmentFour
-//
-//  Created by Sean Madzelonka on 4/7/23.
-//
-
 #include "Byte.hpp"
 
-Byte::Byte() : bits(8) {
-    // Set all bits to 0 initially
-    for (int i = 0; i < 8; i++) {
-        bits[i] = false;
-    }
-}
+namespace Sean{
 
-Byte::Byte(int val) : bits(8) {
-    // Set all bits to 0 initially
-    for (int i = 0; i < 8; i++) {
-        bits[i] = false;
-    }
-
-    // Convert the value to binary and store it in bits
-    int i = 7;
-    while (val > 0 && i >= 0) {
-        bits[i] = val % 2;
-        val /= 2;
-        i--;
-    }
-}
-
-Byte::Byte(int ar[]) : bits(8) {
-    // Set all bits to 0 initially
-    for (int i = 0; i < 8; i++) {
-        bits[i] = false;
-    }
-
-    // Set the bits according to the values in the array
-    for (int i = 0; i < 8 && ar[i] >= 0 && ar[i] <= 1; i++) {
-        bits[i] = ar[i];
-    }
-}
-
-Byte::Byte(const Byte& other) : bits(other.bits) {}
-
-Byte Byte::add(const Byte& other) const {
-    int result = toInt() + other.toInt();
-    return Byte(result);
-}
-
-Byte Byte::sub(const Byte& other) const {
-    int result = toInt() - other.toInt();
-    return Byte(result);
-}
-
-Byte Byte::mul(const Byte& other) const {
-    int result = toInt() * other.toInt();
-    return Byte(result);
-}
-
-Byte Byte::div(const Byte& other) const {
-    int result = toInt() / other.toInt();
-    return Byte(result);
-}
-
-int Byte::toInt() const {
-    int result = 0;
-    int multiplier = 1;
-    for (int i = 7; i >= 0; i--) {
-        if (bits[i]) {
-            result += multiplier;
+    Byte::Byte() : bits(8) {
+        for (int i = 0; i < 8; i++) {
+            bits[i] = false;
         }
-        multiplier *= 2;
     }
-    return result;
-}
 
-std::string Byte::toString() const {
-    std::string result = "";
-    for (int i = 0; i < 8; i++) {
-        result += bits[i] ? "1" : "0";
+    Byte::Byte(int val) : bits(8) {
+        for (int i = 0; i < 8; i++) {
+            bits[i] = false;
+        }
+
+        int i = 7;
+        while (val > 0 && i >= 0) {
+            bits[i] = val % 2;
+            val /= 2;
+            i--;
+        }
     }
-    return result;
-}
 
-Byte Byte::operator+(const Byte& other) const {
-    return add(other);
-}
+    Byte::Byte(int ar[]) : bits(8) {
+        for (int i = 0; i < 8; i++) {
+            bits[i] = false;
+        }
 
-Byte Byte::operator-(const Byte& other) const {
-    return sub(other);
-}
+        for (int i = 0; i < 8 && ar[i] >= 0 && ar[i] <= 1; i++) {
+            bits[i] = ar[i];
+        }
+    }
 
-Byte Byte::operator*(const Byte& other) const {
-    return mul(other);
-}
+    Byte::Byte(const Byte& other) : bits(other.bits) {}
 
-Byte Byte::operator/(const Byte& other) const {
-    return div(other);
-}
+    Byte* Byte::add(const Byte& other) const {
+        int result = toInt() + other.toInt();
+        return new Byte(result);
+    }
 
-bool Byte::operator==(const Byte& other) const {
-    return bits == other.bits;
-}
+    Byte* Byte::sub(const Byte& other) const {
+        int result = toInt() - other.toInt();
+        return new Byte(result);
+    }
 
-bool Byte::operator!=(const Byte& other) const {
-    return !(*this == other);
-}
+    Byte* Byte::mul(const Byte& other) const {
+        int result = toInt() * other.toInt();
+        return new Byte(result);
+    }
 
-//bool Byte::operator[](int index) const {
-//    return bits[index];
-//}
+    Byte* Byte::div(const Byte& other) const {
+        int result = toInt() / other.toInt();
+        return new Byte(result);
+    }
 
-//bool& Byte::operator[](int index) {
-//    return bits[index];
-//}
+    int Byte::toInt() const {
+        int result = 0;
+        int multiplier = 1;
+        for (int i = 7; i >= 0; i--) {
+            if (bits[i]) {
+                result += multiplier;
+            }
+            multiplier *= 2;
+        }
+        return result;
+    }
 
+    std::string Byte::toString() const {
+        std::string result = "";
+        for (int i = 0; i < 8; i++) {
+            result += bits[i] ? "1" : "0";
+        }
+        return result;
+    }
 
+    Byte* Byte::operator+(const Byte& other) const {
+        return add(other);
+    }
 
-std::vector<bool>::reference Byte::operator[](int index) {
-    return bits[index];
-}
+    Byte* Byte::operator-(const Byte& other) const {
+        return sub(other);
+    }
 
-std::vector<bool>::const_reference Byte::operator[](int index) const {
-    return bits[index];
+    Byte* Byte::operator*(const Byte& other) const {
+        return mul(other);
+    }
+
+    Byte* Byte::operator/(const Byte& other) const {
+        return div(other);
+    }
+
+    bool Byte::operator==(const Byte& other) const {
+        return bits == other.bits;
+    }
+
+    bool Byte::operator!=(const Byte& other) const {
+        return !(*this == other);
+    }
+
+    std::vector<bool>::reference Byte::operator[](int index) {
+        return bits[index];
+    }
+
+    std::vector<bool>::const_reference Byte::operator[](int index) const {
+        return bits[index];
+    }
 }

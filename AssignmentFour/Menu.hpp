@@ -7,25 +7,31 @@
 
 #ifndef Menu_hpp
 #define Menu_hpp
-
 #include <stdio.h>
-const int MAXCOUNT = 20;
-struct menuItem
+
+namespace Sean
 {
-    void (*func) ();
-    char decript [50];
-};
-class Menu
-{ private:
-    menuItem mi[MAXCOUNT];
-    int count;
-    void runSelection();
-public:
-    Menu();
-    void addMenu(char *Description, void (*f) ());
-    void runMenu();
-    void waitKey(); // declare waitKey function
-};
+    struct menuItem {
+        void (*func)();
+        char description[50];
+    };
+
+    class Menu {
+    private:
+        menuItem items[20];
+        int count;
+        Menu();
+        Menu(const Menu&) = delete;
+        Menu& operator=(const Menu&) = delete;
+        ~Menu();
+    public:
+        static Menu& getInstance();
+        void addMenu(char* description, void(*func)());
+        void runMenu();
+        void waitKey();
+    };
+
+}
 
 
 #endif /* Menu_hpp */
