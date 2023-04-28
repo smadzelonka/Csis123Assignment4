@@ -1,196 +1,99 @@
 //
 //  main.cpp
-//  Assignment 8
+//  Assignment 9
 //  ID 0266099
-//  Created by Sean Madzelonka on 4/23/23.
+//  Created by Sean Madzelonka on 4/28/23.
 //
 #include <iostream>
 #include <cstdlib>
-#include "Menu.hpp"
+#include <ctime>
+#include <vector>
+#include <fstream>
+#include <string>
+#include <iomanip>
 #include "Byte.hpp"
-
 
 using namespace std;
 using namespace Sean;
 
-void addByte();
-void subByte();
-void mulByte();
-void divByte();
-void bitByte();
+void generateRandom();
+void parseFile();
 void waitKey();
 void Exit();
 
-
 int main() {
-    Menu& m = Menu::getInstance();
-    m.addMenu("1. Add Bytes", addByte);
-    m.addMenu("2. Subtract Bytes", subByte);
-    m.addMenu("3. Multiply Bytes", mulByte);
-    m.addMenu("4. Divide Bytes", divByte);
-    m.addMenu("5. Test Bit Value", bitByte);
-    m.addMenu("6. Exit", Exit);
-    m.runMenu();
+    srand(time(NULL));
+
+    while (true) {
+        cout << "Menu:\n";
+        cout << "1. Generate 100 random double numbers\n";
+        cout << "2. Parse file and write binary\n";
+        cout << "3. Exit\n";
+        cout << "Choose an option: ";
+        int option;
+        cin >> option;
+
+        switch (option) {
+            case 1:
+                generateRandom();
+                break;
+            case 2:
+                parseFile();
+                break;
+            case 3:
+                Exit();
+                break;
+            default:
+                cout << "Invalid option, please try again.\n";
+        }
+    }
+
+    return 0;
 }
 
-void addByte() {
-    int val1, val2;
-    cout << "Enter the first byte value (0-255): ";
-    cin >> val1;
-    Byte* b1 = new Byte(val1);
-    
-    cout << "Enter the second byte value (0-255): ";
-    cin >> val2;
-    Byte* b2 = new Byte(val2);
-    
-    if (!b1 || !b2) {
-        cout << "Unable to allocate memory for Byte object" << endl;
-        waitKey();
+void generateRandom() {
+    ofstream file("Numbers.txt");
+
+    if (!file.is_open()) {
+        cerr << "Error: Unable to create file." << endl;
         return;
     }
-    
-    Byte* b3 = b1->operator+(*b2);
-    if (!b3) {
-        cout << "Unable to allocate memory for Byte object" << endl;
-        waitKey();
-        delete b1;
-        delete b2;
-        return;
+
+    for (int i = 0; i < 100; i++) {
+        double r = (((double)rand() / (double)RAND_MAX) * (250 - 1)) + 1;
+        file << fixed << setprecision(5) << r << endl;
     }
-    
-    cout << "Int:    " << b3->toInt() << endl;
-    cout << "String: " << b3->toString() << endl;
-    cout << "Bit at Index 1: " << (*b3)[1] << std::endl;
-    
-    delete b1;
-    delete b2;
-    delete b3;
-    
+
+    file.close();
+    cout << "Generated 100 random double numbers and saved to 'Numbers.txt'.\n";
     waitKey();
 }
 
-void subByte() {
-    int val1, val2;
-    cout << "Enter the first byte value (0-255): ";
-    cin >> val1;
-    Byte* b1 = new Byte(val1);
-    
-    cout << "Enter the second byte value (0-255): ";
-    cin >> val2;
-    Byte* b2 = new Byte(val2);
-    
-    if (!b1 || !b2) {
-        cout << "Unable to allocate memory for Byte object" << endl;
-        waitKey();
-        return;
-    }
-    
-    Byte* b3 = b1->operator-(*b2);
-    if (!b3) {
-        cout << "Unable to allocate memory for Byte object" << endl;
-        waitKey();
-        delete b1;
-        delete b2;
-        return;
-    }
-    cout << "Int:    " << b3->toInt() << endl;
-    cout << "String: " << b3->toString() << endl;
-    cout << "Bit at Index 1: " << (*b3)[1] << std::endl;
-    
-    delete b1;
-    delete b2;
-    delete b3;
-    
-    waitKey();
-}
+void parseFile() {
+    ifstream inFile("Numbers.txt");
+    ofstream outFile("binary.txt");
 
-void mulByte() {
-    int val1, val2;
-    cout << "Enter the first byte value (0-255): ";
-    cin >> val1;
-    Byte* b1 = new Byte(val1);
-    
-    cout << "Enter the second byte value (0-255): ";
-    cin >> val2;
-    Byte* b2 = new Byte(val2);
-    
-    if (!b1 || !b2) {
-        cout << "Unable to allocate memory for Byte object" << endl;
-        waitKey();
+    if (!inFile.is_open() || !outFile.is_open()) {
+        cerr << "Error: Unable to open file." << endl;
         return;
     }
-    
-    Byte* b3 = b1->operator*(*b2);
-    if (!b3) {
-        cout << "Unable to allocate memory for Byte object" << endl;
-        waitKey();
-        delete b1;
-        delete b2;
-        return;
-    }
-    cout << "Int:    " << b3->toInt() << endl;
-    cout << "String: " << b3->toString() << endl;
-    cout << "Bit at Index 1: " << (*b3)[1] << std::endl;
-    
-    delete b1;
-    delete b2;
-    delete b3;
-    
-    waitKey();
-}
 
-void divByte() {
-    int val1, val2;
-    cout << "Enter the first byte value (0-255): ";
-    cin >> val1;
-    Byte* b1 = new Byte(val1);
-    
-    cout << "Enter the second byte value (0-255): ";
-    cin >> val2;
-    Byte* b2 = new Byte(val2);
-    
-    if (!b1 || !b2) {
-        cout << "Unable to allocate memory for Byte object" << endl;
-        waitKey();
-        return;
-    }
-    
-    if (b2->toInt() == 0) {
-        cout << "Division by zero is not allowed" << endl;
-        waitKey();
-        return;
-    }
-    
-    Byte* b3 = b1->operator/(*b2);
-    if (!b3) {
-        cout << "Unable to allocate memory for Byte object" << endl;
-        waitKey();
-        delete b1;
-        delete b2;
-        return;
-    }
-    cout << "Int:    " << b3->toInt() << endl;
-    cout << "String: " << b3->toString() << endl;
-    cout << "Bit at Index 1: " << (*b3)[1] << endl;
-    
-    delete b1;
-    delete b2;
-    delete b3;
-    
-    waitKey();
-}
+    vector<int> numbers;
+    string line;
 
-void bitByte() {
-    int val, bit;
-    cout << "Enter the byte value (0-255): ";
-    cin >> val;
-    Byte* b = new Byte(val);
-    
-    cout << "Enter the bit index (0-7): ";
-    cin >> bit;
-    
-    cout << "Bit value: " << (*b)[bit] << endl;
-    delete b;
+    while (getline(inFile, line)) {
+        double number = stod(line);
+        numbers.push_back(static_cast<int>(number));
+    }
+
+    for (int number : numbers) {
+        Byte byteNumber(number);
+        outFile << number << " - binary: " << byteNumber.toString() << endl;
+    }
+
+    inFile.close();
+    outFile.close();
+    cout << "Parsed 'Numbers.txt' and wrote binary to 'binary.txt'.\n";
     waitKey();
 }
 
