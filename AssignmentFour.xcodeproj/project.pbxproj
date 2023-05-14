@@ -10,6 +10,7 @@
 		A73F478B29E111B200072983 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A73F478A29E111B200072983 /* main.cpp */; };
 		A73F479329E1120500072983 /* Byte.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A73F479129E1120500072983 /* Byte.cpp */; };
 		A73F479629E1192900072983 /* Menu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A73F479429E1192900072983 /* Menu.cpp */; };
+		A76C2C482A05F6420072E0B4 /* CheckedArray.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A76C2C462A05F6420072E0B4 /* CheckedArray.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -31,6 +32,8 @@
 		A73F479229E1120500072983 /* Byte.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Byte.hpp; sourceTree = "<group>"; };
 		A73F479429E1192900072983 /* Menu.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Menu.cpp; sourceTree = "<group>"; };
 		A73F479529E1192900072983 /* Menu.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Menu.hpp; sourceTree = "<group>"; };
+		A76C2C462A05F6420072E0B4 /* CheckedArray.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CheckedArray.cpp; sourceTree = "<group>"; };
+		A76C2C472A05F6420072E0B4 /* CheckedArray.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CheckedArray.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +71,8 @@
 				A73F478A29E111B200072983 /* main.cpp */,
 				A73F479129E1120500072983 /* Byte.cpp */,
 				A73F479229E1120500072983 /* Byte.hpp */,
+				A76C2C462A05F6420072E0B4 /* CheckedArray.cpp */,
+				A76C2C472A05F6420072E0B4 /* CheckedArray.hpp */,
 			);
 			path = AssignmentFour;
 			sourceTree = "<group>";
@@ -132,6 +137,7 @@
 				A73F479629E1192900072983 /* Menu.cpp in Sources */,
 				A73F478B29E111B200072983 /* main.cpp in Sources */,
 				A73F479329E1120500072983 /* Byte.cpp in Sources */,
+				A76C2C482A05F6420072E0B4 /* CheckedArray.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

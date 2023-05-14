@@ -6,7 +6,7 @@
 //
 #include <iostream>
 #include <cstdlib>
-#include "menu.hpp"
+#include "Menu.hpp"
 
 using namespace std;
 

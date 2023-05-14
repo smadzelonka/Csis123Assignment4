@@ -1,109 +1,32 @@
 //
 //  main.cpp
-//  Assignment 9
+//  Assignment 12
 //  ID 0266099
-//  Created by Sean Madzelonka on 4/28/23.
+//  Created by Sean Madzelonka on 5/05/23.
 //
 #include <iostream>
-#include <cstdlib>
-#include <ctime>
-#include <vector>
-#include <fstream>
-#include <string>
-#include <iomanip>
 #include "Byte.hpp"
 
-using namespace std;
-using namespace Sean;
-
-void generateRandom();
-void parseFile();
-void waitKey();
-void Exit();
-
 int main() {
-    srand(time(NULL));
+    try {
+        Sean::Byte myByte(0b11010101); // Initialize a Byte with a binary value
 
-    while (true) {
-        cout << "Menu:\n";
-        cout << "1. Generate 100 random double numbers\n";
-        cout << "2. Parse file and write binary\n";
-        cout << "3. Exit\n";
-        cout << "Choose an option: ";
-        int option;
-        cin >> option;
+        // Accessing and modifying bits
+        std::cout << "Initial value: " << myByte.toString() << std::endl;
+        myByte[0] = 1; // Set the first bit to 1
+        std::cout << "After setting the first bit to 1: " << myByte.toString() << std::endl;
 
-        switch (option) {
-            case 1:
-                generateRandom();
-                break;
-            case 2:
-                parseFile();
-                break;
-            case 3:
-                Exit();
-                break;
-            default:
-                cout << "Invalid option, please try again.\n";
-        }
+        // Perform some operation on the Byte, for example, adding two Byte objects
+        Sean::Byte anotherByte(0b00110011);
+        Sean::Byte sumByte = myByte + anotherByte;
+        std::cout << "Sum of the two Byte objects: " << sumByte.toString() << std::endl;
+        
+        // Now, try to access an out-of-bounds index
+                std::cout << "Accessing out-of-bounds index: " << myByte[10] << std::endl;
+    } catch (const Sean::CheckedArrayException& e) {
+        std::cout << "Caught an exception: " << e.what() << std::endl;
     }
+    
 
     return 0;
-}
-
-void generateRandom() {
-    ofstream file("Numbers.txt");
-
-    if (!file.is_open()) {
-        cerr << "Error: Unable to create file." << endl;
-        return;
-    }
-
-    for (int i = 0; i < 100; i++) {
-        double r = (((double)rand() / (double)RAND_MAX) * (250 - 1)) + 1;
-        file << fixed << setprecision(5) << r << endl;
-    }
-
-    file.close();
-    cout << "Generated 100 random double numbers and saved to 'Numbers.txt'.\n";
-    waitKey();
-}
-
-void parseFile() {
-    ifstream inFile("Numbers.txt");
-    ofstream outFile("binary.txt");
-
-    if (!inFile.is_open() || !outFile.is_open()) {
-        cerr << "Error: Unable to open file." << endl;
-        return;
-    }
-
-    vector<int> numbers;
-    string line;
-
-    while (getline(inFile, line)) {
-        double number = stod(line);
-        numbers.push_back(static_cast<int>(number));
-    }
-
-    for (int number : numbers) {
-        Byte byteNumber(number);
-        outFile << number << " - binary: " << byteNumber.toString() << endl;
-    }
-
-    inFile.close();
-    outFile.close();
-    cout << "Parsed 'Numbers.txt' and wrote binary to 'binary.txt'.\n";
-    waitKey();
-}
-
-void waitKey() {
-    cout << "Press any key to continue...";
-    cin.ignore();
-    cin.get();
-}
-
-void Exit() {
-    cout << "Goodbye!" << endl;
-    exit(0);
 }
