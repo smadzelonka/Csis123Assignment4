@@ -6,20 +6,15 @@ namespace Sean {
 Byte::Byte() : CheckedArray(8) {}
 
 Byte::Byte(int val) : CheckedArray(8) {
-    try {
-        for (int i = 0; i < 8; i++) {
-            at(i) = false;
-        }
-        
-        int i = 7;
-        while (val > 0 && i >= 0) {
-            at(i) = val % 2;
-            val /= 2;
-            i--;
-        }
+    for (int i = 0; i < 8; i++) {
+        at(i) = false;
     }
-    catch (const CheckedArrayException& e) {
-        throw;
+    
+    int i = 7;
+    while (val > 0 && i >= 0) {
+        at(i) = val % 2;
+        val /= 2;
+        i--;
     }
 }
 

@@ -17,7 +17,7 @@
 
 namespace Sean {
 
-class Byte : public CheckedArray {
+class Byte : public CheckedArray<int> {
 public:
     Byte();
     Byte(int val);
@@ -37,6 +37,7 @@ public:
     Byte operator*(const Byte& other) const;
     Byte operator/(const Byte& other) const;
 };
+
 }
 
 
